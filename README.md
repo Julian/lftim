@@ -1,6 +1,6 @@
 # Lean for the Inept Mathematician
 
-This repository contains source files for a number of articles or posts aimed at explaining byte-sized mathematical concepts with the help of the [Lean Theorem Prover](https://leanprover.github.io/) and [mathlib](https://github.com/leanprover-community/mathlib/), its library of mathematics.
+This repository contains source files for a number of articles or posts aimed at explaining bite-sized mathematical concepts with the help of the [Lean Theorem Prover](https://leanprover.github.io/) and [mathlib](https://github.com/leanprover-community/mathlib/), its library of mathematics.
 
 The authors of these posts are themselves not mathematicians (so corrections or pointers are most welcome!).
 We aim to learn ourselves, and in the process, perhaps explain a thing or two about mathlib to any who find it useful.
