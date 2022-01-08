@@ -38,7 +38,7 @@ The first 🍫 means the multiset contains no `0` element.
 The second 🍫 means the multiset contains no `1` element.  
 The third 🍫 means the multiset contains no `2` element.  
 The fourth 🍫 means the multiset contains no `3` element.  
-The ⭐⭐⭐ means the multiset contains three `3` elements.
+The ⭐⭐⭐ means the multiset contains three `4` elements.
 
 This is how we represent `{3,4,4}`.
 # 🍫🍫🍫⭐🍫⭐⭐
