@@ -19,6 +19,49 @@ We'll be looking at mathlib's [src/data/sym/card.lean](https://github.com/leanpr
 
 > Multichoose problems are sometimes called "bars and stars" problems.
 
+The reason why this formula is called "stars and bars" is because stars and bars is a good way to understand how the formula works. Let's say we want to count the number of multisets with cardinality 3 that consist of 5 symbols: 0, 1, 2, 3 and 4.
+
+There are 35 multisets.
+
+```
+{{4,4,4},{3,4,4},{3,3,4},{3,3,3},{2,4,4},{2,3,4},{2,3,3},{2,2,4},{2,2,3},{2,2,2},{1,4,4},{1,3,4},{1,3,3},{1,2,4},{1,2,3},{1,2,2},{1,1,4},{1,1,3},{1,1,2},{1,1,1},{0,4,4},{0,3,4},{0,3,3},{0,2,4},{0,2,3},{0,2,2},{0,1,4},{0,1,3},{0,1,2},{0,1,1},{0,0,4},{0,0,3},{0,0,2},{0,0,1},{0,0,0}}
+```
+
+How can we count without enumerating everything though?
+
+Notice that there is another way to represent each multiset.
+
+This is how we represent `{4,4,4}`.
+# 🍫🍫🍫🍫⭐⭐⭐
+
+The first 🍫 means the multiset contains no `0` element.  
+The second 🍫 means the multiset contains no `1` element.  
+The third 🍫 means the multiset contains no `2` element.  
+The fourth 🍫 means the multiset contains no `3` element.  
+The ⭐⭐⭐ means the multiset contains three `3` elements.
+
+This is how we represent `{3,4,4}`.
+# 🍫🍫🍫⭐🍫⭐⭐
+
+The first 🍫 means the multiset contains no `0` element.  
+The second 🍫 means the multiset contains no `1` element.  
+The third 🍫 means the multiset contains no `2` element.  
+Then ⭐🍫 means the multiset contains one `3` element.  
+The ⭐⭐ means the multiset contains two `4` elements.  
+
+You can see the pattern here. 
+
+The number of ⭐ before the first 🍫 is the number of `0`s in the multiset.  
+The number of ⭐ between the first and the second 🍫 is the number of `1`s in the multiset.  
+The number of ⭐ between the second and the third 🍫 is the number of `2`s in the multiset.  
+The number of ⭐ between the third and the fourth 🍫 is the number of `3`s in the multiset.  
+The number of ⭐ after the fourth 🍫 is the number of `4`s in the multiset.  
+
+The number of 🍫 is the number of symbols minus one. Because we have 5 symbols, there are always 4 🍫.  
+The number of ⭐ is the cardinality of a multiset. The cardinality of a multiset is 3, so we have 3 ⭐.
+
+When we look at the multisets this way, we can see that the number of multisets is equal to the number of strings of ⭐ and 🍫. We can easily calculate the number of strings by using the formula C(n + k - 1, k), where k is the cardinality of the multiset and n is the number of symbols.
+
 # Lean
 In Lean however, there's no stars and there's no bars. We simply can't simulate the informal stars and bars proof in Lean. We need another approach.
 
