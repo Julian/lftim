@@ -11,14 +11,14 @@ Prelude:
 
 # Graph Coloring Basics
 
-In Graph Theory, finding a proper coloring of a graph regards to attributing "colors"
+In Graph Theory, finding a proper coloring of a graph consists of attributing "colors"
 to its vertices in a way that adjacent vertices have different colors.
 
 [In Lean](https://github.com/leanprover-community/mathlib/pull/10287), a coloring (short
 for "proper coloring") is represented as a homomorphism from the graph being colored to
 the complete graph of available colors. Let's seen an example of how this works.
 
-Suppose we have a graph `G` that we want to color with three colors: `c1`, `c2` and `c3`.
+Suppose we have a graph `G` that we want to color with three colors: `c₁`, `c₂` and `c₃`.
 
 ```
       G            Complete graph of colors
@@ -42,18 +42,22 @@ E → c₃
 Now note that this mapping is in fact a homomorphism. And you may wonder, why does such
 a homomorphism represent a coloring?
 
-Informally, consider two adjacent vertices in G. Since our mapping is an homomorphism,
+Informally, consider two adjacent vertices in G. Since our mapping is a homomorphism,
 those vertices must be mapped to adjacent vertices in the complete graph of colors.
 And such adjacent vertices represent different colors.
 
 You can check Mathlib's formalization of the above [here](https://leanprover-community.github.io/mathlib_docs/combinatorics/simple_graph/coloring.html#simple_graph.coloring.valid).
 
 Let's play with the API a bit.
-
 -/
 
 import combinatorics.simple_graph.coloring
 import tactic.derive_fintype
+
+/-
+Deriving `decidable_eq` and `fintype` will allow us to prove some results
+with `dec_trivial`.
+-/
 
 @[derive [decidable_eq, fintype]]
 inductive verts : Type
@@ -68,7 +72,10 @@ def edges : list (verts × verts) :=
 
 def adj (v w : verts) : bool := edges.mem (v, w) || edges.mem (w, v)
 
-/- Coercing `bool` to `Prop`: -/
+/-
+The `simple_graph` API requires a `Prop` for adjacency. So we need to coerce
+our `bool` function to a `Prop` one:
+-/
 
 def adj_prop (v w : verts) : Prop := adj v w
 
@@ -77,11 +84,11 @@ def adj_prop (v w : verts) : Prop := adj v w
 lemma adj_symmetric : ∀ (x y : verts), adj x y → adj y x := dec_trivial
 lemma adj_loopless : ∀ (x : verts), ¬adj x x := dec_trivial
 
-def my_graph : simple_graph verts := ⟨adj_prop, adj_symmetric, adj_loopless⟩
+def G : simple_graph verts := ⟨adj_prop, adj_symmetric, adj_loopless⟩
 
-/- Now we can color `my_graph`.-/
+/- Now we can color `G`.-/
 
-@[derive [decidable_eq, fintype]]
+@[derive decidable_eq]
 inductive colors : Type
 | c₁ | c₂ | c₃
 
@@ -94,12 +101,15 @@ def color_fn : verts → colors
   | D := c₂
   | E := c₃
 
-/- And this proof allows us to use the API: -/
+/-
+We must prove our coloring is proper, which `dec_trivial` is able to do easily for
+our finite graph.
+-/
 
 lemma color_fn_is_valid : ∀ (v w : verts), adj v w → color_fn v ≠ color_fn w :=
 dec_trivial
 
-def my_coloring : my_graph.coloring colors := ⟨color_fn, color_fn_is_valid⟩
+def my_coloring : G.coloring colors := ⟨color_fn, color_fn_is_valid⟩
 
 /-
 Notice that `color_fn_is_valid` wouldn't have been accepted by Lean if `color_fn`
@@ -113,7 +123,7 @@ by coloring vertices using themselves as colors.
 
 However, the interesting question is: what is the **minimum** number of colors required
 to color a certain graph? This quantity is called *chromatic number* and finding it
-for any given graph is a NP-Hard problem. Although Mathlib does provide proofs for some
+for any given graph is an NP-Hard problem, although Mathlib does provide proofs for some
 known results:
 
 * If `G` is a subgraph of `G'`, the chromatic number of `G'` is at least the
