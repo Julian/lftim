@@ -1,0 +1,27 @@
+{
+  "name": "lftim",
+  "version": "1.0.0",
+  "description": "This repository contains source files for a number of articles or posts aimed at explaining bite-sized mathematical concepts with the help of the [Lean Theorem Prover](https://leanprover.github.io/) and [mathlib](https://github.com/leanprover-community/mathlib/), its library of mathematics.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install",
+    "generate-md": "python3 lean2md.py _posts _posts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Julian/lftim.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Julian/lftim/issues"
+  },
+  "homepage": "https://github.com/Julian/lftim#readme",
+  "devDependencies": {
+    "husky": "^7.0.0"
+  }
+}
