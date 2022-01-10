@@ -13,3 +13,11 @@ You can place Lean code in the `lean` directory and run `$ python lean2md.py lea
 
 This repository is also a Lean project that has `mathlib` as dependency. You
 can get cached `olean` files by doing `leanproject get-mathlib-cache`.
+
+# Configure Git hooks
+This repository contains a precommit hook to automatically convert Lean source files to Markdown files on commit. If you want to use this hook, run
+```
+git config core.hooksPath ./git-hooks
+```
+
+Otherwise, you can run `python3 lean2md.py lean _posts` to convert Lean files to Markdown.
