@@ -10,3 +10,6 @@ We aim to learn ourselves, and in the process, perhaps explain a thing or two ab
 ## Contributing
 
 You can place Lean code in the `lean` directory and run `$ python lean2md.py lean _posts` to turn your code into a post. Lean docstrings will turn into regular text and everything else will be encapsulated inside code blocks.
+
+This repository is also a Lean project that has `mathlib` as dependency. You
+can get cached `olean` files by doing `leanproject get-mathlib-cache`.
