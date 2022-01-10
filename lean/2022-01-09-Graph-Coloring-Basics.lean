@@ -94,7 +94,7 @@ def color_fn : verts → colors
   | D := c₂
   | E := c₃
 
-/- And this proof allows us to use the API -/
+/- And this proof allows us to use the API: -/
 
 lemma color_fn_is_valid : ∀ (v w : verts), adj v w → color_fn v ≠ color_fn w :=
 dec_trivial
@@ -133,7 +133,7 @@ chromatic number of `G`
 
 Graph coloring is an important problem in Computer Science, with
 [applications](https://en.wikipedia.org/wiki/Graph_coloring#Applications) in different
-areasof study. This is an ongoing field of research and finding lower/upper bounds for
+areas of study. This is an ongoing field of research and finding lower/upper bounds for
 the chromatic number, as well as potent coloring heuristics for graphs of certain shapes,
 is of immense value for the academic community and for the industry in general.
 -/
