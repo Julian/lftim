@@ -1,0 +1,3 @@
+#!/bin/bash
+python3 lean2md.py lean _posts
+git add _posts
