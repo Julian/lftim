@@ -1,0 +1,17 @@
+name: Autoupdate Lean
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+
+jobs:
+  upgrade_lean:
+    runs-on: ubuntu-latest
+    name: Bump Lean and dependency versions
+    steps:
+      - uses: actions/checkout@v2
+      - name: Upgrade lean and dependencies
+        uses: leanprover-contrib/lean-upgrade-action@master
+        with:
+          repo: ${{ github.repository }}
+          access-token: ${{ secrets.GITHUB_TOKEN }}
