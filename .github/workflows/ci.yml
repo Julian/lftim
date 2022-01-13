@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  release:
+    types: [published]
+  schedule:
+    # Daily at 6:11
+    - cron: '11 6 * * *'
+
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build via lean
+      uses: leanprover-contrib/lean-build-action@master
