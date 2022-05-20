@@ -5,4 +5,4 @@ lean_version = "leanprover-community/lean:3.42.1"
 path = "lean"
 
 [dependencies]
-mathlib = {git = "https://github.com/leanprover-community/mathlib", rev = "76f9f45419d8d984668fccb6b76547e0597011cf"}
+mathlib = {git = "https://github.com/leanprover-community/mathlib", rev = "5cf7a1c5d86f8b2f7629a97a8ebf9fce8931ebef"}
