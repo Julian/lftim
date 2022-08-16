@@ -1,8 +1,8 @@
 [package]
 name = "lean-for-the-inept-mathematician"
 version = "0.1.0"
-lean_version = "leanprover-community/lean:3.45.0"
+lean_version = "leanprover-community/lean:3.46.0"
 path = "lean"
 
 [dependencies]
-mathlib = {git = "https://github.com/leanprover-community/mathlib", rev = "63138639ca195344ae96aa77f3a02b90a3ac5c68"}
+mathlib = {git = "https://github.com/leanprover-community/mathlib", rev = "ed8330608eb184bd3a8b7e877f118bfe34751e9a"}
